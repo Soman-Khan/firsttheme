@@ -1,48 +1,49 @@
 <?php get_header(); ?>
-    <?php if(have_posts()){?>
-        <?php while(have_posts()){ ?>
-            <?php the_post();?>
-            <h2>
-                <a href="<?php the_permalink(); ?>" tittle="<?php the_title_attribute();?>">
-                    <?php the_title(); ?>
-                </a>
-            </h2>
-            <div>
-             <?php firsttheme_post_meta(); ?>
-            </div>
-            <div>
-                <?php the_excerpt();?>
-            </div>
-            <?php firsttheme_readmore_link(); ?>
-        <?php }?>
-        <?php the_posts_pagination();?>
-    <?php } else{?>
-        <p>
-            <?php //echo __('Sorry, No posts matched your criteria','firsttheme');?>
-            <?php echo esc_html_e('Sorry, No posts matched your criteria','firsttheme');?>
-        </p>
-    <?php }?>
+<?php if (have_posts()) { ?>
+    <?php while (have_posts()) { ?>
+        <?php the_post(); ?>
+        <h2>
+            <a href="<?php the_permalink(); ?>" tittle="<?php the_title_attribute(); ?>">
+                <?php the_title(); ?>
+            </a>
+        </h2>
+        <div>
+            <?php _themename_post_meta(); ?>
+        </div>
+        <div>
+            <?php the_excerpt(); ?>
+        </div>
+        <?php _themename_readmore_link(); ?>
+    <?php } ?>
+    <?php the_posts_pagination(); ?>
+<?php } else { ?>
+    <p>
+        <?php //echo __('Sorry, No posts matched your criteria','_themename');
+        ?>
+        <?php echo esc_html_e('Sorry, No posts matched your criteria', '_themename'); ?>
+    </p>
+<?php } ?>
 
-    <?php
-        $comments = 1;
+<?php
+$comments = 1;
 
-        //echo _n('One Comment', 'Comments', $comments, 'firsttheme');
-        printf (_n('One Comment', '%s Comments', $comments, 'firsttheme'),$comments);
+//echo _n('One Comment', 'Comments', $comments, '_themename');
+printf(_n('One Comment', '%s Comments', $comments, '_themename'), $comments);
 
-        //printf('This post have %s comments',$comments);
+//printf('This post have %s comments',$comments);
 
-        $city = 'london';
+$city = 'london';
 
-        echo esc_html__( 'Your city is ', 'firsttheme' ). $city;
-        /*the above code will translate only the text "your city is"
+echo esc_html__('Your city is ', '_themename') . $city;
+/*the above code will translate only the text "your city is"
         * it will not translate the city name which is  the variable $city
         * lets make the code more dynamic 
         */
 
-        printf(
-            /* translators: %s is the city name here */
-            esc_html__( 'Your city is %s', 'firsttheme' ),
-            $city
-        );
-    ?>
+printf(
+    /* translators: %s is the city name here */
+    esc_html__('Your city is %s', '_themename'),
+    $city
+);
+?>
 <?php get_footer(); ?>
